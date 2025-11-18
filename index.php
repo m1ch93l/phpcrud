@@ -10,21 +10,21 @@
 </head>
 
 <body>
-    <div class="container-md">
+    <div class="container-fluid">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            ADD STUDENT
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
+            Add Student
         </button>
 
-        <!--ADD Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form method="post" action="insert.php">
+                    <form action="insert.php" method="post">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                         <div class="modal-body">
 
                             <div class="mb-3">
@@ -33,7 +33,7 @@
                                     aria-describedby="emailHelp">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Last Name</label>
+                                <label for="exampleInputPassword1" class="form-label">Last name</label>
                                 <input type="text" name="lastname" class="form-control" id="exampleInputPassword1">
                             </div>
 
@@ -47,74 +47,87 @@
             </div>
         </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">First</th>
-                    <th scope="col">Lastname</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    include 'conn.php';
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            include 'conn.php';
 
-                    $query = "SELECT id, firstname, lastname FROM student";
-                    $stmt  = mysqli_prepare($conn, $query);
-                    $stmt->execute();
-                    $stmt->bind_result($id, $firstname, $lastname);
+                            $query = "SELECT id, firstname, lastname FROM student";
+                            $stmt  = $conn->prepare($query);
+                            $stmt->bind_result($id, $firstname, $lastname);
+                            $stmt->execute();
+                        while ($stmt->fetch()) {?>
+                        <tr>
+                            <td><?php echo $firstname ?></td>
+                            <td><?php echo $lastname ?></td>
+                            <td>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#edit<?php echo $id ?>">
+                                    Edit Student
+                                </button>
 
-                while ($stmt->fetch()) {?>
-                <tr>
-                    <td><?php echo $firstname; ?></td>
-                    <td><?php echo $lastname; ?></td>
-                    <td>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                            data-bs-target="#edit<?php echo $id ?>">
-                            EDIT STUDENT
-                        </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="edit<?php echo $id ?>" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form action="update.php" method="post">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">edit student
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id" value="<?php echo $id ?>">
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">First
+                                                            Name</label>
+                                                        <input type="text" value="<?php echo $firstname ?>"
+                                                            name="firstname" class="form-control"
+                                                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputPassword1" class="form-label">Last
+                                                            name</label>
+                                                        <input type="text" name="lastname"
+                                                            value="<?php echo $lastname ?>" class="form-control"
+                                                            id="exampleInputPassword1">
+                                                    </div>
 
-                        <!--EDIT Modal -->
-                        <div class="modal fade" id="edit<?php echo $id ?>" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <form method="post" action="update.php">
-                                        <div class="modal-body">
-                                            <input type="hidden" name="id" value="<?php echo $id ?>">
-                                            <div class="mb-3">
-                                                <label for="exampleInputEmail1" class="form-label">First Name</label>
-                                                <input type="text" name="firstname" value="<?php echo $firstname; ?>"
-                                                    class="form-control" id="exampleInputEmail1"
-                                                    aria-describedby="emailHelp">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="exampleInputPassword1" class="form-label">Last Name</label>
-                                                <input type="text" name="lastname" value="<?php echo $lastname; ?>"
-                                                    class="form-control" id="exampleInputPassword1">
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">UPDATE</button>
-                                        </div>
-                                    </form>
                                 </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <?php }?>
-            </tbody>
-        </table>
+
+                                <a type="button" href="delete.php?id=<?php echo $id ?>"
+                                    class="btn btn-danger">Delete</a>
+
+                            </td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-3"></div>
+        </div>
     </div>
 </body>
 
