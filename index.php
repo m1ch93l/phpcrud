@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            include 'conn.php';
+                            include 'database.php';
 
                             $query = "SELECT id, firstname, lastname FROM student";
                             $stmt  = $conn->prepare($query);
