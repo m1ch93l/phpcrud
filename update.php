@@ -1,6 +1,6 @@
 <?php
 
-include 'conn.php';
+include 'database.php';
 
 $id        = $_POST['id'];
 $firstname = $_POST['firstname'];
