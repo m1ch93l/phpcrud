@@ -62,7 +62,7 @@
                         <?php
                             include 'database.php';
 
-                            $query = "SELECT id, firstname, lastname FROM student";
+                            $query = "SELECT id, firstname, lastname FROM students";
                             $stmt  = $conn->prepare($query);
                             $stmt->bind_result($id, $firstname, $lastname);
                             $stmt->execute();
