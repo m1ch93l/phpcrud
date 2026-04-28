@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
             Add Student
@@ -48,8 +48,7 @@
         </div>
 
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6">
+            <div class="col-12">
                 <table class="table">
                     <thead>
                         <tr>
@@ -126,7 +125,6 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-3"></div>
         </div>
     </div>
 </body>
