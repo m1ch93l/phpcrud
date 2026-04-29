@@ -80,37 +80,30 @@
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form action="update.php" method="post">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">edit student
-                                                    </h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5">edit student</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" value="<?php echo $id ?>">
+                                                <div class="mb-3">
+                                                    <label class="form-label">First Name</label>
+                                                    <input type="text" value="<?php echo $firstname ?>" name="firstname"
+                                                        class="form-control">
                                                 </div>
-                                                <div class="modal-body">
-                                                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                                                    <div class="mb-3">
-                                                        <label for="exampleInputEmail1" class="form-label">First
-                                                            Name</label>
-                                                        <input type="text" value="<?php echo $firstname ?>"
-                                                            name="firstname" class="form-control"
-                                                            id="exampleInputEmail1" aria-describedby="emailHelp">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="exampleInputPassword1" class="form-label">Last
-                                                            name</label>
-                                                        <input type="text" name="lastname"
-                                                            value="<?php echo $lastname ?>" class="form-control"
-                                                            id="exampleInputPassword1">
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Last name</label>
+                                                    <input type="text" name="lastname" value="<?php echo $lastname ?>"
+                                                        class="form-control">
+                                                </div>
 
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
-                                                </div>
-                                            </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">SAVE CHANGES</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
