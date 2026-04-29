@@ -28,13 +28,12 @@
                         <div class="modal-body">
 
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">First Name</label>
-                                <input type="text" name="firstname" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label class="form-label">First Name</label>
+                                <input type="text" name="firstname" class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Last name</label>
-                                <input type="text" name="lastname" class="form-control" id="exampleInputPassword1">
+                                <label class="form-label">Last name</label>
+                                <input type="text" name="lastname" class="form-control">
                             </div>
 
                         </div>
